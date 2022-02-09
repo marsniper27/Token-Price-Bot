@@ -1,0 +1,12 @@
+{
+  "name": "pricebot",
+  "version": "1.0.0",
+  "description": "token price fetching bot",
+  "main": "index.js",
+  "author": "Marsniper27",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
