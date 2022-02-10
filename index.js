@@ -4,19 +4,21 @@ const https = require('https');
 
 const client = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"]});
 console.log(client.channels.cache.valueOf());
+console.log(client.user);
 
 update();
 
 function run(){
     setTimeout(d=>{
         update();
-    },60000)
+        //console.log(client.guilds.cache.at(0).me.setNickname("WORK!!!"))//.guild.me.setNickname("hjdjsh"))//members.cache.at(0).user.setNickname("work!!!"));
+    },10000)
 }
 
  async function update(){
+    //console.log(client.user);
     let url = "https://wax.alcor.exchange/api/markets/35";
-    let voiceChannel = await client.channels.fetch("940793567180370020");
-    console.log(voiceChannel);
+    //console.log(voiceChannel);
     var name = "";
 
     await https.get(url,(res) => {
@@ -29,13 +31,13 @@ function run(){
         res.on("end", () => {
             try {
                 let json = JSON.parse(body);
-                console.log(json)
                 name = json.last_price;
-                console.log(name)
-                if(voiceChannel != null){
-                    voiceChannel.setName("VOID: $"+name.toString())
+                if(client.guilds.cache.size>0){
+                    client.guilds.cache.at(0).me.setNickname("VOID: $"+name.toString())
                 }
+                
             } catch (error) {
+                console.log("error:");
                 console.error(error.message);
             };
         });
@@ -45,5 +47,11 @@ function run(){
     });
     run();
 }
+
+client.on('message', message => {
+    if (message.content.includes('changeNick')) {
+        message.guild.me.setNickname(message.content.replace('changeNick ', ''));
+    }
+});
 
 client.login(config.BOT_TOKEN);
