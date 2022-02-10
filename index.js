@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 const https = require('https');
 
 const client = new Discord.Client({intents: ["GUILDS", "GUILD_MESSAGES"]});
-console.log(client.channels.cache.valueOf());
-console.log(client.user);
+//console.log(client.channels.cache.valueOf());
+//console.log(client.user);
 
 update();
 
@@ -33,7 +33,7 @@ function run(){
                 let json = JSON.parse(body);
                 name = json.last_price;
                 if(client.guilds.cache.size>0){
-                    for(var x = 0; x<=client.guilds.cache.size;x++){
+                    for(var x = 0; x<client.guilds.cache.size;x++){
                         client.guilds.cache.at(x).me.setNickname("VOID: $"+name.toString())
                     }
                 }
