@@ -33,7 +33,9 @@ function run(){
                 let json = JSON.parse(body);
                 name = json.last_price;
                 if(client.guilds.cache.size>0){
-                    client.guilds.cache.at(0).me.setNickname("VOID: $"+name.toString())
+                    for(var x = 0; x<=client.guilds.cache.size;x++){
+                        client.guilds.cache.at(x).me.setNickname("VOID: $"+name.toString())
+                    }
                 }
                 
             } catch (error) {
