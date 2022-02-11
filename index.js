@@ -42,7 +42,7 @@ function run(){
                 price = parseFloat(index)
                 console.log(price)
                 
-                if(client.guilds.cache.size>0 && oldprice != price){
+                if(client.guilds.cache.size>0 && oldPrice != price){
                     for(var x = 0; x<client.guilds.cache.size;x++){
                         client.guilds.cache.at(x).me.setNickname("VOID: $"+price.toString())
                     }
